@@ -33,6 +33,7 @@
     "husky": "^9",
     "lint-staged": "^16",
     "oxfmt": "^0.21.0",
+    "oxlint": "^1.36.0",
     "release-it": "^19",
     "typescript": "^5"
   },

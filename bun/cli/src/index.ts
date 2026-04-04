@@ -11,7 +11,12 @@ const cli = command({
   ] as const,
   options: {
     loud: { type: "boolean", short: "l", description: "Shout the greeting" },
-    times: { type: "number", short: "t", default: 1, description: "Number of times to greet" },
+    times: {
+      type: "number",
+      short: "t",
+      default: 1,
+      description: "Number of times to greet",
+    },
   },
   handler: ([name], { loud, times }) => {
     const greeting = `Hello, ${name}!`;

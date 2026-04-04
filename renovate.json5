@@ -7,7 +7,6 @@
   "minimumReleaseAge": "3 days",
   "prHourlyLimit": 2,
   "prConcurrentLimit": 5,
-  "rangeStrategy": "bump",
   "packageRules": [
     {
       "description": "Automerge safe template dependency updates after CI passes.",

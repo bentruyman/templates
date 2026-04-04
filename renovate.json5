@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["bun"],
+  "timezone": "America/Chicago",
+  "schedule": ["before 9am on monday"],
+  "minimumReleaseAge": "3 days",
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 5,
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "description": "Automerge safe Bun dependency updates after CI passes.",
+      "matchManagers": ["bun"],
+      "matchFileNames": ["bun/cli/package.json", "bun/lib/package.json"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Keep major updates open for manual review.",
+      "matchManagers": ["bun"],
+      "matchFileNames": ["bun/cli/package.json", "bun/lib/package.json"],
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ]
+}

@@ -20,12 +20,15 @@ Update `package.json` with your project details:
 
 ## Scripts
 
-| Script              | Description                             |
-| ------------------- | --------------------------------------- |
-| `bun run build`     | Bundle for Node.js (outputs to `dist/`) |
-| `bun run format`    | Format code with oxfmt                  |
-| `bun run typecheck` | Type-check with TypeScript              |
-| `bun run release`   | Publish a new version with release-it   |
+| Script                 | Description                                  |
+| ---------------------- | -------------------------------------------- |
+| `bun run build`        | Bundle for Node.js (outputs to `dist/`)      |
+| `bun run format`       | Format code with oxfmt                       |
+| `bun run format:check` | Check formatting without rewriting files     |
+| `bun run lint`         | Lint the template with oxlint                |
+| `bun run typecheck`    | Type-check with TypeScript                   |
+| `bun run verify`       | Run format, lint, typecheck, test, and build |
+| `bun run release`      | Publish a new version with release-it        |
 
 ## Development
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "enabledManagers": ["bun"],
+  "enabledManagers": ["npm", "github-actions"],
   "timezone": "America/Chicago",
   "schedule": ["before 9am on monday"],
   "minimumReleaseAge": "3 days",
@@ -10,8 +10,8 @@
   "rangeStrategy": "bump",
   "packageRules": [
     {
-      "description": "Automerge safe Bun dependency updates after CI passes.",
-      "matchManagers": ["bun"],
+      "description": "Automerge safe template dependency updates after CI passes.",
+      "matchManagers": ["npm"],
       "matchFileNames": ["bun/cli/package.json", "bun/lib/package.json"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
@@ -19,7 +19,7 @@
     },
     {
       "description": "Keep major updates open for manual review.",
-      "matchManagers": ["bun"],
+      "matchManagers": ["npm"],
       "matchFileNames": ["bun/cli/package.json", "bun/lib/package.json"],
       "matchUpdateTypes": ["major"],
       "automerge": false

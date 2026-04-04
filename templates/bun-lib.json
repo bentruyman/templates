@@ -1,0 +1,6 @@
+{
+  "name": "bun-lib",
+  "defaultDir": "lib",
+  "tar": "https://codeload.github.com/bentruyman/templates/tar.gz/refs/heads/main",
+  "subdir": "bun/lib"
+}

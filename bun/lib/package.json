@@ -1,0 +1,40 @@
+{
+  "name": "lib",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node",
+    "format": "oxfmt",
+    "prepare": "husky",
+    "prepublishOnly": "bun run typecheck && bun test && bun run build",
+    "release": "release-it",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "husky": "^9",
+    "lint-staged": "^16",
+    "oxfmt": "^0.40.0",
+    "oxlint": "^1.55.0",
+    "release-it": "^19",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*": [
+      "oxfmt --no-error-on-unmatched-pattern",
+      "oxlint --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

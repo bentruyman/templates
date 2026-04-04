@@ -15,5 +15,6 @@ npx giget gh:bentruyman/templates/<template> <project-name>
 | Template             | Description                                    | Command                                            |
 | -------------------- | ---------------------------------------------- | -------------------------------------------------- |
 | [bun/cli](./bun/cli) | Bun CLI with TypeScript, Husky, and release-it | `npx giget gh:bentruyman/templates/bun/cli my-cli` |
+| [bun/lib](./bun/lib) | Bun library with TypeScript, Husky, and release-it | `npx giget gh:bentruyman/templates/bun/lib my-lib` |
 
 See each template's README for detailed usage instructions.

@@ -12,7 +12,12 @@
     {
       "description": "Automerge safe template dependency updates after CI passes.",
       "matchManagers": ["npm"],
-      "matchFileNames": ["bun/cli/package.json", "bun/lib/package.json"],
+      "matchFileNames": [
+        "bun/cli/package.json",
+        "bun/lib/package.json",
+        "node/cli/package.json",
+        "node/lib/package.json"
+      ],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
       "automergeType": "pr"
@@ -20,7 +25,12 @@
     {
       "description": "Keep major updates open for manual review.",
       "matchManagers": ["npm"],
-      "matchFileNames": ["bun/cli/package.json", "bun/lib/package.json"],
+      "matchFileNames": [
+        "bun/cli/package.json",
+        "bun/lib/package.json",
+        "node/cli/package.json",
+        "node/lib/package.json"
+      ],
       "matchUpdateTypes": ["major"],
       "automerge": false
     }

@@ -1,0 +1,6 @@
+{
+  "name": "node-api",
+  "defaultDir": "api",
+  "tar": "https://codeload.github.com/bentruyman/templates/tar.gz/refs/heads/main",
+  "subdir": "node/api"
+}

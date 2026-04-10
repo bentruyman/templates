@@ -1,0 +1,54 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "db:down": "sh ./scripts/compose.sh down --volumes --remove-orphans",
+    "db:generate": "drizzle-kit generate",
+    "db:init": "npm run db:up && npm run db:migrate",
+    "db:logs": "sh ./scripts/compose.sh logs -f db",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:up": "sh ./scripts/compose.sh up -d db && until sh ./scripts/compose.sh exec -T db pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-app}; do sleep 1; done",
+    "dev": "node --watch src/index.ts",
+    "format": "oxfmt && oxlint --fix",
+    "lint": "oxfmt --check && oxlint .",
+    "prepare": "husky",
+    "test": "npm run db:init && vitest run",
+    "typecheck": "tsc",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.12",
+    "@hono/zod-validator": "^0.7.6",
+    "dotenv": "^17.4.1",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.12.11",
+    "pg": "^8.20.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@types/pg": "^8.20.0",
+    "drizzle-kit": "^0.31.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "oxfmt": "^0.43.0",
+    "oxlint": "^1.58.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  },
+  "lint-staged": {
+    "*": [
+      "oxfmt --no-error-on-unmatched-pattern",
+      "oxlint --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

@@ -1,9 +1,28 @@
 import { command, run } from "@truyman/cli";
+import kleur from "kleur";
 
-import pkg from "../package.json";
+import pkg from "../package.json" with { type: "json" };
+
+type PackageManifest = {
+  bin?: Record<string, string>;
+  description: string;
+  name: string;
+  version: string;
+};
+
+export function resolveCliName(manifest: PackageManifest): string {
+  return Object.keys(manifest.bin ?? {})[0] ?? manifest.name;
+}
+
+export function formatGreeting(name: string, loud = false): string {
+  const greeting = `Hello, ${name}!`;
+  return loud
+    ? kleur.bold().red(greeting.toUpperCase())
+    : kleur.green(greeting);
+}
 
 const cli = command({
-  name: pkg.name,
+  name: resolveCliName(pkg as PackageManifest),
   description: pkg.description,
   version: pkg.version,
   args: [
@@ -19,8 +38,7 @@ const cli = command({
     },
   },
   handler: ([name], { loud, times }) => {
-    const greeting = `Hello, ${name}!`;
-    const output = loud ? greeting.toUpperCase() : greeting;
+    const output = formatGreeting(name, loud);
 
     for (let i = 0; i < times; i++) {
       console.log(output);
@@ -28,4 +46,6 @@ const cli = command({
   },
 });
 
-run(cli, process.argv.slice(2));
+if (import.meta.main) {
+  run(cli, process.argv.slice(2));
+}

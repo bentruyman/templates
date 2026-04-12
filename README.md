@@ -13,6 +13,12 @@ npx giget gh:bentruyman/templates/<template> <project-name>
 The Node templates require Node.js 24 or newer.
 The API templates also require Docker with Compose support for local PostgreSQL.
 
+## Bun Package Distribution
+
+The Bun npm package templates build with `--packages external` by default. That keeps runtime dependencies aligned with `package.json` semantics instead of inlining them into `dist/`.
+
+Use bundled package dependencies only when you want a single-file distribution artifact. For normal npm packages, keep dependencies external and verify the generated `dist/index.js` stays small and still references package imports.
+
 ## Available Templates
 
 | Template               | Description                                                  | Command                                              |

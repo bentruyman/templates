@@ -12,14 +12,15 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node",
+    "build": "bun build src/index.ts --outdir dist --target node --packages external",
+    "check:dist": "bun run scripts/check-dist.ts",
     "format": "oxfmt && oxlint --fix",
     "lint": "oxfmt --check && oxlint .",
     "prepare": "husky",
-    "prepublishOnly": "bun run typecheck && bun test && bun run build",
+    "prepublishOnly": "bun run typecheck && bun test && bun run build && bun run check:dist",
     "release": "release-it",
     "typecheck": "tsc",
-    "verify": "bun run lint && bun run typecheck && bun test && bun run build"
+    "verify": "bun run lint && bun run typecheck && bun test && bun run build && bun run check:dist"
   },
   "devDependencies": {
     "@types/bun": "latest",

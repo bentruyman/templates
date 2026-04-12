@@ -24,7 +24,8 @@ Replace the example implementation in `src/index.ts` with your library code.
 
 | Script                 | Description                                  |
 | ---------------------- | -------------------------------------------- |
-| `bun run build`        | Bundle the library to `dist/`                |
+| `bun run build`        | Build the library with package deps external |
+| `bun run check:dist`   | Verify `dist/index.js` size and import shape |
 | `bun run format`       | Format code with oxfmt                       |
 | `bun run format:check` | Check formatting without rewriting files     |
 | `bun run lint`         | Lint the template with oxlint                |
@@ -39,6 +40,18 @@ Run tests while iterating:
 ```bash
 bun test --watch
 ```
+
+## Distribution Modes
+
+For normal npm-published packages, keep runtime dependencies external:
+
+```bash
+bun build src/index.ts --outdir dist --target node --packages external
+```
+
+Use Bun's default bundled mode only when you explicitly want a single-file
+distribution artifact. If a dependency stays in `package.json`, do not inline it
+into the published build by default.
 
 ## Publishing
 

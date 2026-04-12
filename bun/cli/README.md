@@ -22,7 +22,8 @@ Update `package.json` with your project details:
 
 | Script                 | Description                                  |
 | ---------------------- | -------------------------------------------- |
-| `bun run build`        | Bundle for Node.js (outputs to `dist/`)      |
+| `bun run build`        | Build for Node.js with package deps external |
+| `bun run check:dist`   | Verify `dist/index.js` size and import shape |
 | `bun run format`       | Format code with oxfmt                       |
 | `bun run format:check` | Check formatting without rewriting files     |
 | `bun run lint`         | Lint the template with oxlint                |
@@ -37,6 +38,20 @@ Run your CLI locally:
 ```bash
 bun run src/index.ts --help
 ```
+
+## Distribution Modes
+
+For normal npm-published CLIs, keep runtime dependencies external:
+
+```bash
+bun build src/index.ts --outdir dist --target node --packages external
+```
+
+That matches `package.json` dependency semantics: if a package stays in
+`dependencies`, the published `dist/index.js` should not inline it by default.
+
+Use Bun's default bundled mode only when your goal is a single-file portable CLI
+artifact rather than a standard npm package.
 
 ## Publishing
 
